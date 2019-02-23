@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_customer_widget/widget/circle_progressbar_widget.dart';
-import 'package:flutter_customer_widget/widget/move_widget.dart';
+import 'package:flutter_customer_widget/widget/double_tap_widget.dart';
+// import 'package:flutter_customer_widget/widget/circle_progressbar_widget.dart';
+// import 'package:flutter_customer_widget/widget/circle_view.dart';
+// import 'package:flutter_customer_widget/widget/layout_widget.dart';
+// import 'package:flutter_customer_widget/widget/move_widget.dart';
 // import 'package:flutter_customer_widget/widget/painter_widget.dart';
 
 void main() => runApp(MyApp());
@@ -10,7 +13,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: MoveWidget(),
+      home: Scaffold(
+        body: DoubleTapWidget(),
+      ),
       //home: PainterWidget(size: Size(600, 400), useAngle: false,),
     );
   }
