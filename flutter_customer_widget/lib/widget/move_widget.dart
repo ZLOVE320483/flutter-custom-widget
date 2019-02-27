@@ -6,19 +6,20 @@ class MoveWidget extends StatefulWidget {
   State<StatefulWidget> createState() => MoveWidgetState();
 }
 
-class MoveWidgetState extends State<MoveWidget> with SingleTickerProviderStateMixin {
+class MoveWidgetState extends State<MoveWidget>
+    with SingleTickerProviderStateMixin {
   Offset _offset;
   double strokeWidth = 5.0;
 
   Animation<double> animation;
   AnimationController animationController;
 
-
   @override
   void initState() {
     super.initState();
     _offset = Offset(0.0, 0.0);
-    animationController = AnimationController(vsync: this, duration: Duration(seconds: 3));
+    animationController =
+        AnimationController(vsync: this, duration: Duration(seconds: 3));
     animation = Tween(begin: 5.0, end: 20.0).animate(animationController);
     animationController.addListener(() {
       setState(() {
@@ -43,23 +44,20 @@ class MoveWidgetState extends State<MoveWidget> with SingleTickerProviderStateMi
 
   @override
   Widget build(BuildContext context) {
-    return Listener(
-        onPointerMove: (details) {
-          setState(() {
-            _offset = details.position;
-            _offset -= Offset(50, 50);
-          });
-        },
-        child: Container(
-          color: Colors.white,
-            child: Container(
-              child: Transform.translate(
-                offset: _offset,
-                child: CustomPaint(
-                  painter: LinePainter(strokeWidth),
-                ),
-              ),
-            ),
-        ));
+    return Transform.translate(
+      offset: _offset,
+      child: CustomPaint(
+        painter: LinePainter(strokeWidth),
+        child: Listener(
+          behavior: HitTestBehavior.translucent,
+          onPointerMove: (details) {
+            setState(() {
+              _offset = Offset(details.position.dx, details.position.dy);
+              _offset -= Offset(50, 50);
+            });
+          },
+        ),
+      ),
+    );
   }
 }
