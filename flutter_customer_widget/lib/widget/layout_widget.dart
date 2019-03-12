@@ -5,10 +5,10 @@ class LayoutWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('LayoutWidget --- build ---');
     return Container(
       width: 250,
       height: 150,
+      color: Colors.white,
       child: Column(
         children: <Widget>[
           ScaleWidget(scaleKey),
@@ -45,13 +45,11 @@ class ScaleWidgetState extends State<ScaleWidget> {
     setState(() {
       _width = _width * 1.1;
       _height = _height * 1.1;
-      print('w -- $_width -- $_height');
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    print('ScaleWidget --- build ---');
     return Container(
       width: _width,
       height: _height,

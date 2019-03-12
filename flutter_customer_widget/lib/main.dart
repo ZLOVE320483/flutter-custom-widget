@@ -1,11 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_customer_widget/router/router.dart';
-// import 'package:flutter_customer_widget/widget/double_tap_widget.dart';
-// import 'package:flutter_customer_widget/widget/circle_progressbar_widget.dart';
-// import 'package:flutter_customer_widget/widget/circle_view.dart';
-// import 'package:flutter_customer_widget/widget/layout_widget.dart';
-// import 'package:flutter_customer_widget/widget/move_widget.dart';
-// import 'package:flutter_customer_widget/widget/painter_widget.dart';
+import 'dart:async';
+import './page/home_page.dart';
 
 void main() => runApp(MyApp());
 
@@ -14,14 +9,43 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: FirstPage(),
-      //home: PainterWidget(size: Size(600, 400), useAngle: false,),
+      home: SplashPage(),
     );
   }
 
 }
 
-class FirstPage extends StatelessWidget {
+class SplashPage extends StatefulWidget {
+
+@override
+  State<StatefulWidget> createState() => SplashPageState();
+
+}
+
+class SplashPageState extends State<SplashPage> {
+
+  Timer _timer;
+
+  @override
+  void initState() {
+    super.initState();
+    _timer = Timer(const Duration(milliseconds: 1500), () {
+        try {
+          Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (ctx) {
+            return HomePage();
+          }), (route) {
+            return route == null;
+          });
+        } catch (e) {
+        }
+    });
+  }
+
+  @override
+  void dispose() {
+    _timer.cancel();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,3 +56,4 @@ class FirstPage extends StatelessWidget {
     );
   }
 }
+

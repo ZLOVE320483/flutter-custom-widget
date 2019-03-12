@@ -35,8 +35,11 @@ class DoubleTapWidgetState extends State<DoubleTapWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: widgets,
+    return Container(
+      color: Colors.white,
+      child: Stack(
+        children: widgets,
+      ),
     );
   }
 }
